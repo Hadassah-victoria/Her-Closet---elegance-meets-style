@@ -37,6 +37,10 @@ body {
     width: 40px;
     height: 40px;
     margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 .brand-name {
@@ -174,6 +178,18 @@ body {
     .header-icons {
         display: none;
     }
+
+    
+  .logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
 }
 
 /* Filter Section */
