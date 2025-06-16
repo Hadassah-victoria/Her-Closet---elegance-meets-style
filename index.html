@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Her Closet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-SZ15+oOvIz7//5kp+0s...==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <!-- Replace your current Font Awesome script with this one -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="her.png" alt="Her Closet Logo" class="logo" />
+            <span class="brand-name">Her Closet</span>
+        </div>
+
+        <nav class="navbar">
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Collection</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#products" class="shop-btn">Shop Now</a></li>
+            </ul>
+            <div class="header-icons" style="position: relative;">
+                <!-- Favorites Icon -->
+                <i id="favorites-icon" class="fas fa-heart" style="cursor: pointer;"></i>
+
+                <!-- Cart Icon -->
+                <i id="cart-icon" class="fas fa-shopping-cart" style="cursor: pointer;"></i>
+
+                <!-- Favorites Dropdown -->
+                <div id="favorites-dropdown" class="dropdown hidden"
+                    style="position: absolute; right: 40px; top: 40px; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; z-index: 1000;">
+                    <h4>Your Favorites</h4>
+                    <ul id="favorites-list"></ul>
+                    <p class="empty-msg">No favorites yet 💖</p>
+                </div>
+
+                <!-- Cart Dropdown -->
+                <div id="cart-dropdown" class="dropdown hidden"
+                    style="position: absolute; right: 0; top: 40px; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; z-index: 1000;">
+                    <h4>Your Cart</h4>
+                    <ul id="cart-list"></ul>
+                    <p class="empty-msg">Your cart is empty 🛒</p>
+                </div>
+            </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Where modesty meets modern style – welcome to Her Closet.”</h1>
+            <p>A safe space where fashion meets identity and self-expression.
+            </p>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input id="search-input" type="text" placeholder="Search for products..." />
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section Start -->
+    <section class="filter-section">
+        <div class="filter-container">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <div class="categories">
+                    <button class="cat-btn active" data-category="All">All</button>
+                    <button class="cat-btn" data-category="Dress" >Dress</button>
+                    <button class="cat-btn" data-category="Gown">Gown</button>
+                    <button class="cat-btn" data-category="Midi">Midi</button>
+                    <button class="cat-btn" data-category="Frock">Frock</button>
+                    <button class="cat-btn" data-category="Wrap">Wrap</button>
+                    <button class="cat-btn" data-category="Slip">Slip</button>
+                    <button class="cat-btn" data-category="velvet">velvet</button>
+                    <button class="cat-btn" data-category="Accessories">Accessories</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>price Range</h3>
+                <div class="range-wrapper">
+                    <input type="range" id="min-price" min="0" max="5000" step="100" value="0">
+                    <input type="range" id="max-price" min="0" max="5000" step="100" value="5000">
+                    <div class="price-values">
+                        <span>₹<span id="min-price-value">0</span></span>
+                        <span>₹<span id="max-price-value">5000</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Minimum Rating</h3>
+                <div class="rating-buttons">
+                    <button class="rating-btn active" data-rating="0"><i class="fas fa-star"></i> All+</button>
+                    <button class="rating-btn" data-rating="1"><i class="fas fa-star"></i> 1+</button>
+                    <button class="rating-btn" data-rating="2"><i class="fas fa-star"></i> 2+</button>
+                    <button class="rating-btn" data-rating="3"><i class="fas fa-star"></i> 3+</button>
+                    <button class="rating-btn" data-rating="4"><i class="fas fa-star"></i> 4+</button>
+                    <button class="rating-btn" data-rating="4.5"><i class="fas fa-star"></i> 4.5+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Filter Section End -->
+
+    <!-- Product Grid Section -->
+    <section class="product-section" id="products">
+        <h2 class="section-title">Shop All Dresses</h2>
+        <div class="product-grid" id="products-list">
+            <!-- Product Cards -->
+            <!-- Repeat for each product -->
+            <div class="product-card">
+                <img src="dress1.jpeg" alt="Serene Blush Gown">
+                <h3>Serene Blush Gown</h3>
+                <p class="price">₹2,999</p>
+                <p class="rating">4.8 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Serene Blush Gown',price :'₹2,999', image:'dress1.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Serene Blush Gown',price :'₹2,999', image:'dress1.jpeg'})">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress2.jpeg" alt="Sunset Bloom Dress">
+                <h3>Sunset Bloom Dress</h3>
+                <p class="price">₹3,450</p>
+                <p class="rating">4.6 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Sunset Bloom Dress',price :'₹3,450', image:'dress2.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Sunset Bloom Dress',price :'₹3,450', image:'dress2.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress3.jpeg" alt="Petal Whisper Midi">
+                <h3>Petal Whisper Midi</h3>
+                <p class="price">₹2,799</p>
+                <p class="rating">4.7 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Petal Whisper Midi',price :'₹2,799', image:'dress3.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Petal Whisper Midi',price :'₹2,799', image:'dress3.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress4.jpeg" alt="Blush Harmony Frock">
+                <h3>Blush Harmony Frock</h3>
+                <p class="price">₹2,350</p>
+                <p class="rating">4.5 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Blush Harmony Frock',price :'₹2,350', image:'dress4.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Blush Harmony Frock',price :'₹2,350', image:'dress4.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress5.jpeg" alt="Peach Dream Wrap">
+                <h3>Peach Dream Wrap</h3>
+                <p class="price">₹3,199</p>
+                <p class="rating">4.9 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Peach Dream Wrap',price :'₹3,199', image:'dress5.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Peach Dream Wrap',price :'₹3,199', image:'dress5.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress6.jpeg" alt="Ivory Mist Dress">
+                <h3>Ivory Mist Dress</h3>
+                <p class="price">₹2,899</p>
+                <p class="rating">4.6 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Ivory Mist Dress',price :'₹2,899', image:'dress6.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Ivory Mist Dress',price :'₹2,899', image:'dress6.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress7.jpeg" alt="Rosé Luxe Gown">
+                <h3>Rosé Luxe Gown</h3>
+                <p class="price">₹3,699</p>
+                <p class="rating">4.8 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Rosé Luxe Gown',price :'₹3,699', image:'dress7.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Rosé Luxe Gown',price :'₹3,699', image:'dress7.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress8.jpeg" alt="Sakura Breeze Dress">
+                <h3>Sakura Breeze Dress</h3>
+                <p class="price">₹2,650</p>
+                <p class="rating">4.7 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Sakura Breeze Dress',price :'₹2,650', image:'dress8.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Sakura Breeze Dress',price :'₹2,650', image:'dress8.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress9.jpeg" alt="Berry Blush Slip">
+                <h3>Berry Blush Slip</h3>
+                <p class="price">₹2,499</p>
+                <p class="rating">4.5 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'Berry Blush Slip',price :'₹2,499', image:'dress9.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'Berry Blush Slip',price :'₹2,499', image:'dress9.jpeg' })">❤️</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="dress10.jpeg" alt="velvet Blush">
+                <h3>velvet Blush</h3>
+                <p class="price">₹3,599</p>
+                <p class="rating">4.5 ★</p>
+                <div class="actions">
+                    <button onclick="addToCart({name:'velvet Blush',price :'₹3,599', image:'dress 0.jpeg' })">🛒</button>
+                    <button onclick="toggleFavorite(this,{name:'velvet Blush',price :'₹3,599', image:'dress 0.jpeg' })">❤️</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="about-section">
+            <!-- Title -->
+            <div class="about-header" data-aos="fade-up">
+                <h2 class="about-title">About Her Closet</h2>
+                <p class="about-subtitle">Curating timeless elegance for the modern woman</p>
+            </div>
+
+            <!-- Story Row -->
+            <div class="about-flex-row" data-aos="fade-up" data-aos-delay="100">
+                <div class="about-image-container">
+                    <img src="her closet.png" alt="Store Image" class="about-img" />
+                </div>
+                <div class="about-text-block">
+                    <h3 class="section-heading">Our Story</h3>
+                    <p class="about-paragraph">
+                        Founded in 2020, Her Closet began as a passion project to bring carefully curated, high-quality
+                        fashion pieces to women who appreciate timeless style and modern elegance.
+                    </p>
+                    <p class="about-paragraph">
+                        We believe that every woman deserves to feel confident and beautiful in what she wears. That’s
+                        why we handpick each piece in our collection, focusing on quality, comfort, and versatility.
+                    </p>
+                    <p class="about-paragraph">
+                        From casual everyday wear to special occasion pieces, we’re here to help you build a wardrobe
+                        that reflects your unique personality and style.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Highlights -->
+            <div class="highlight-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="highlight-item">
+                    <div class="highlight-icon">✨</div>
+                    <h4 class="highlight-title">Quality First</h4>
+                    <p class="highlight-text">Every piece is carefully selected for its quality, durability, and
+                        timeless appeal.</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">💖</div>
+                    <h4 class="highlight-title">Personal Touch</h4>
+                    <p class="highlight-text">We provide personalized styling advice and exceptional customer service.
+                    </p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🌱</div>
+                    <h4 class="highlight-title">Sustainable Fashion</h4>
+                    <p class="highlight-text">We're committed to sustainable practices and supporting ethical fashion
+                        brands.</p>
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="mission-box" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="section-heading">Our Mission</h3>
+                <p class="mission-text">
+                    At Her Closet, we believe fashion is not about revealing more—it's about expressing who you truly
+                    are. In a world where people often seek attention by showing off their bodies, we want women to feel
+                    bold, beautiful, and confident in choosing modesty. Our mission is to celebrate elegance without
+                    compromise—offering stylish, graceful dresses that honor your values and elevate your confidence.
+                    Every piece we design reflects our passion for timeless beauty, inner strength, and the freedom to
+                    be unapologetically you.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="contact-header">
+                <h2 class="contact-title">Get In Touch</h2>
+                <p class="contact-subtitle">
+                    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <!-- Email -->
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="info-title">Email</h4>
+                            <p class="info-text">hello@hercloset.com</p>
+                        </div>
+                    </div>
+                    <!-- Phone -->
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="info-title">Phone</h4>
+                            <p class="info-text">+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <!-- Address -->
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="info-title">Address</h4>
+                            <p class="info-text">
+                                123 Fashion Street<br />
+                                visakhapatnam, Andhra Pradesh 40002
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Store Hours -->
+                    <div class="store-hours">
+                        <h4 class="hours-title">Store Hours</h4>
+                        <div class="hours-box">
+                            <p><span class="day-label">Monday - Friday</span><span class="hour-time">10:00 AM - 8:00
+                                    PM</span></p>
+                            <p><span class="day-label">Saturday</span><span class="hour-time">10:00 AM - 9:00 PM</span>
+                            </p>
+                            <p><span class="day-label">Sunday</span><span class="hour-time">11:00 AM - 7:00 PM</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-card">
+                    <h3 class="form-title">Send us a Message</h3>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your full name" class="form-input" />
+                        <input type="email" placeholder="your.email@example.com" class="form-input" />
+                        <input type="text" placeholder="What's this about?" class="form-input" />
+                        <textarea rows="5" placeholder="Tell us how we can help you..." class="form-input"></textarea>
+                        <button type="submit" class="form-button">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- AOS JS -->
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true,
+                duration: 1000,
+                offset: 100,
+            });
+        </script>
+
+
+        <script src="script.js"></script>
+</body>
+<footer class="footer-section">
+    <div class="footer-container">
+        <div class="footer-about">
+            <h4 class="footer-title">Her Closet</h4>
+            <p class="footer-text">
+                Her Closet is more than just a fashion boutique—it's a celebration of elegance, modesty, and
+                individuality. We offer timeless, high-quality dresses crafted for the modern woman who values both
+                grace and comfort. Each piece in our collection is hand-selected with care to help you feel empowered,
+                confident, and beautifully you.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4 class="footer-subtitle">Quick Links</h4>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4 class="footer-subtitle">Contact</h4>
+            <p><i class="fas fa-envelope"></i> contact@hercloset.com</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-map-marker-alt"></i> visakhapatnam, India</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Her Creations. All rights reserved.</p>
+    </div>
+</footer>
+
+
+</html>
