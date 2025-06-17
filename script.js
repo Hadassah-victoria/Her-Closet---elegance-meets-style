@@ -1,3 +1,12 @@
+window.addEventListener("scroll", function () {
+    const header = document.querySelector(".header");
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+
 // Hamburger Toggle Script
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
