@@ -23,16 +23,36 @@ const minValue = document.getElementById('min-price-value');
 const maxValue = document.getElementById('max-price-value');
 
 const products = [
-  { name: "Serene Blush Gown", price: 2999, rating: 4.8, category: "Gown", image: "dress1.jpeg" },
-  { name: "Sunset Bloom Dress", price: 3450, rating: 4.6, category: "Dress", image: "dress2.jpeg" },
-  { name: "Petal Whisper Midi", price: 2799, rating: 4.7, category: "Midi", image: "dress3.jpeg" },
-  { name: "Blush Harmony Frock", price: 2350, rating: 4.5, category: "Frock", image: "dress4.jpeg" },
-  { name: "Peach Dream Wrap", price: 3199, rating: 4.9, category: "Wrap", image: "dress5.jpeg" },
-  { name: "Ivory Mist Dress", price: 2899, rating: 4.6, category: "Dress", image: "dress6.jpeg" },
-  { name: "Rosé Luxe Gown", price: 3699, rating: 4.8, category: "Gown", image: "dress7.jpeg" },
-  { name: "Sakura Breeze Dress", price: 2650, rating: 4.7, category: "Dress", image: "dress8.jpeg" },
-  { name: "Berry Blush Slip", price: 2499, rating: 4.5, category: "Slip", image: "dress9.jpeg" },
-  { name: "Velvet Blush", price: 3599, rating: 4.5, category: "Velvet", image: "dress10.jpeg" }
+  { name: "Serene Blush Gown", price: 2999, rating: 4.8, category: "Gown", image: "images/dress1.jpeg" },
+  { name: "Sunset Bloom Dress", price: 3450, rating: 4.6, category: "Dress", image: "images/dress2.jpeg" },
+  { name: "Petal Whisper Midi", price: 2799, rating: 4.7, category: "Midi", image: "images/dress3.jpeg" },
+  { name: "Blush Harmony Frock", price: 2350, rating: 4.5, category: "Frock", image: "images/dress4.jpeg" },
+  { name: "Peach Dream Wrap", price: 3199, rating: 4.9, category: "Wrap", image: "images/dress5.jpeg" },
+  { name: "Ivory Mist Dress", price: 2899, rating: 4.6, category: ["Dress","Slip"], image: "images/dress6.jpeg" },
+  { name: "Rosé Luxe Gown", price: 3699, rating: 4.8, category: "Gown", image: "images/dress7.jpeg" },
+  { name: "Sakura Breeze Dress", price: 2650, rating: 4.7, category: "Dress", image: "images/dress8.jpeg" },
+  { name: "Berry Blush Slip", price: 2499, rating: 4.5, category: "Slip", image: "images/dress9.jpeg" },
+  { name: "Velvet Blush", price: 3599, rating: 4.5, category: "Velvet", image: "images/dress10.jpeg" },
+  { name: "Cap Sleeve Satin Gown", price: 2999, rating: 4.0, category: "Gown", image: "images/gown1.jpeg" },
+  { name: "Cloudnine Gown", price: 1999, rating: 4.4, category: ["Gown","Frock"], image: "images/gown2.jpeg" },
+  { name: "White Elegant Gown", price: 3999, rating: 4.5, category: "Gown", image: "images/gown3.jpeg" },
+  { name: "Rosé Gown", price: 4999, rating: 4.5, category: "Gown", image: "images/gown4.jpeg" },
+  { name: "Maroon Floral Sleeveless", price: 2999, rating: 4.0, category: "Gown", image: "images/gown5.jpeg" },
+  { name: "Voilet Blush", price: 2450, rating: 4.0, category: "Gown", image: "images/gown6.jpeg" },
+  { name: "Red Sleeveless Midi", price: 1500, rating: 4.0, category: ["Midi","Gown"], image: "images/midi1.jpeg" },
+  { name: "Butter Yellow A-Line Midi", price: 999, rating: 4.3, category: "Midi", image: "images/midi2.jpeg" },
+  { name: "Pink Sleeveless Linen Midi Dress", price: 1399, rating: 4.5, category: "Midi", image: "images/midi3.jpeg" },
+  { name: "VESTIDO MIDI", price: 2599, rating: 4.5, category: "Midi", image: "images/midi4.jpeg" },
+  { name: "Red cherry Frock", price: 2599, rating: 4.5, category: "Frock", image: "images/frock1.jpeg" },
+  { name: "Pink Bloom", price: 2800, rating: 4.5, category: "Frock", image: "images/frock2.jpeg" },
+  { name: "Royal Grace", price: 3600, rating: 4.5, category: "Frock", image: "images/frock3.jpeg" },
+  { name: "Black Classy Frock", price: 2000, rating: 4.5, category: "Frock", image: "images/frock4.jpeg" },
+  { name: "Sleeve Ruffled Lace Evening Dress", price: 2500, rating: 4.5, category: "Wrap", image: "images/wrap1.jpeg" },
+  { name: "A-Line/Princess Dress", price: 1999, rating: 4.4, category: ["Wrap","Slip"], image: "images/wrap2.jpeg" },
+  { name: "A-Line Cocktail Dress", price: 2000, rating: 4.5, category: "Wrap", image: "images/wrap3.jpeg" },
+  { name: "Chiffon dress", price: 2200, rating: 4.5, category: ["Wrap","Slip"], image: "images/wrap4.jpeg" },
+  { name: "Pink Slip", price: 3200, rating: 4.5, category: "Slip", image: "images/slick1.jpeg" },
+  { name: "Dark Slayer", price: 2400, rating: 4.8, category: "Slip", image: "images/slick4.jpeg" }
 ];
 
 function updatePriceDisplay() {
@@ -231,7 +251,6 @@ function applyFilters() {
   const maxPrice = parseInt(maxRange.value);
   const selectedRating = parseFloat(document.querySelector('.rating-btn.active')?.dataset.rating || 0);
 
-  // Check if "All" category is selected
   const allBtn = document.querySelector('.cat-btn[data-category="All"]');
   let selectedCategories = [];
 
@@ -242,7 +261,12 @@ function applyFilters() {
   }
 
   const filtered = products.filter(p => {
-    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
+    const productCategories = Array.isArray(p.category) ? p.category : [p.category]; // Always treat as array
+
+    const matchesCategory =
+      selectedCategories.length === 0 ||
+      selectedCategories.some(cat => productCategories.includes(cat)); // ✅ checks overlap
+
     const matchesSearch = p.name.toLowerCase().includes(searchTerm);
     const matchesPrice = p.price >= minPrice && p.price <= maxPrice;
     const matchesRating = p.rating >= selectedRating;
@@ -250,7 +274,6 @@ function applyFilters() {
     return matchesCategory && matchesSearch && matchesPrice && matchesRating;
   });
 
-  renderProducts(filtered);
+  renderProducts(filtered); // ✅ Update display
 }
-
 
